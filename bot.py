@@ -53,4 +53,4 @@ def main():
     app.run_polling()  # Make sure this line is properly indented
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=8000)
+    app.bot.py run(host="0.0.0.0", port=8000)
