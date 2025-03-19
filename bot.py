@@ -88,4 +88,4 @@ async def run_telegram_bot():
 if __name__ == "__main__":
     asyncio.run(run_telegram_bot())
     # Start FastAPI
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    uvicorn bot:app --host 0.0.0.0 --port 8000
