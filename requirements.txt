@@ -2,5 +2,4 @@ python-telegram-bot==20.0
 update
 fastapi
 uvicorn
-smtplib
 email-validator
