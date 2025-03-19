@@ -50,7 +50,6 @@ def main() -> None:
     application.add_handler(CommandHandler('sendemail', send_email_command))
 
     # Start the bot
-    application.run_polling()
-
-if name == 'main':
-    main()
+    if __name__ == "__main__":
+    print("Bot is running...")
+    app.run_polling()
