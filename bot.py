@@ -18,8 +18,10 @@ SMTP_PASSWORD = "pnyx uzyx cnhu endu"
 app = FastAPI()
 
 # Configure logging
-logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(name)
+logging.basicConfig(level=logging.INFO)
+
+logger.info("Logger initialized successfully!")
 
 # Telegram Bot Handlers
 async def start(update: Update, context: CallbackContext):
