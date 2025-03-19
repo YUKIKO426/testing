@@ -81,11 +81,8 @@ if __name__ == "__main__":
     from threading import Thread
 
     # Run Telegram bot in a separate thread
-   async def main():
-    await telegram_bot.start_polling()
-
-if __name__ == "__main__":
-    asyncio.run(main())
+  def run_telegram_bot():
+    telegram_bot.run_polling()
 
     telegram_thread = Thread(target=run_telegram_bot)
     telegram_thread.start()
