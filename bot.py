@@ -2,7 +2,7 @@ import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from telegram import Update
-from telegram.ext import Updater, CommandHandler, CallbackContext
+from telegram.ext import Application, CommandHandler, CallbackContext
 
 # Replace these with your email and password
 EMAIL_ADDRESS = 'asssasin105@gmail.com'
@@ -47,7 +47,7 @@ def send_mass_mail(update: Update, context: CallbackContext):
 
 def main():
     # Replace 'YOUR_TELEGRAM_BOT_TOKEN' with your actual bot token
-    updater = Updater("7200863338:AAHB5vASJK7luUk9K2OIa1suB2b-Jf4BsIQ")
+    app = Application.builder().token("7200863338:AAHB5vASJK7luUk9K2OIa1suB2b-Jf4BsIQ").build()
 
     # Register command handlers
     updater.dispatcher.add_handler(CommandHandler('sendmassmail', send_mass_mail))
