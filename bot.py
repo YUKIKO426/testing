@@ -85,10 +85,7 @@ async def run_telegram_bot():
     print("Running Telegram Bot...")
     await asyncio.sleep(3600)  # Run for an hour as an example
 
-if name == "main":
+if __name__ == "__main__":
     asyncio.run(run_telegram_bot())
-    telegram_thread = Thread(target=run_telegram_bot)
-    telegram_thread.start()
-
     # Start FastAPI
     uvicorn.run(app, host="0.0.0.0", port=8000)
