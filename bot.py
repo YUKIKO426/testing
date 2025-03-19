@@ -46,14 +46,11 @@ def send_mass_mail(update: Update, context: CallbackContext):
     update.message.reply_text(f"Sent emails to {success_count}/{len(recipients)} recipients.")
 
 def main():
-    # Replace 'YOUR_TELEGRAM_BOT_TOKEN' with your actual bot token
     app = Application.builder().token("7200863338:AAHB5vASJK7luUk9K2OIa1suB2b-Jf4BsIQ").build()
 
-    # Register command handlers
-    app.add_handler(CommandHandler("sendmassmail", send_mass_mail))
+    app.add_handler(CommandHandler("start", start))
 
-    # Start the bot
-   app.run_polling()
+    app.run_polling()  # Make sure this line is properly indented
 
 if name == "main":
     main()
