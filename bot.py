@@ -52,5 +52,5 @@ def main():
 
     app.run_polling()  # Make sure this line is properly indented
 
-if name == "main":
+if __name__ == "__main__":
     main()
