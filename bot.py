@@ -50,6 +50,6 @@ def main() -> None:
     application.add_handler(CommandHandler('sendemail', send_email_command))
 
     # Start the bot
-    if __name__ == "__main__":
-    print("Bot is running...")
-    app.run_polling()
+    if name == "main":
+    print("Bot is running...")  # This line must be indented
+    main()  # Ensure main() is also indented
