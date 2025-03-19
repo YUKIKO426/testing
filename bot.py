@@ -81,9 +81,12 @@ if __name__ == "__main__":
     from threading import Thread
 
     # Run Telegram bot in a separate thread
-def run_telegram_bot():
-    print("Running Telegram Bot")
+async def run_telegram_bot():
+    print("Running Telegram Bot...")
+    await asyncio.sleep(3600)  # Run for an hour as an example
 
+if name == "main":
+    asyncio.run(run_telegram_bot())
     telegram_thread = Thread(target=run_telegram_bot)
     telegram_thread.start()
 
