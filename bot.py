@@ -2,54 +2,59 @@ import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from telegram import Update
-from telegram.ext import Application, CommandHandler, ContextTypes
+from telegram.ext import Updater, CommandHandler, CallbackContext
 
-# Email configuration
-SMTP_SERVER = 'https://smtp.gmail.com'  # Replace with your SMTP server
-SMTP_PORT = 465  # For SSL, use 465; for TLS, use 587
-SMTP_USERNAME = 'asssasin105@gmail.com'
-SMTP_PASSWORD = 'pnyx uzyx cnhu endu'
+# Replace these with your email and password
+EMAIL_ADDRESS = 'asssasin105@gmail.com'
+EMAIL_PASSWORD = 'pnyx uzyx cnhu endu'
 
-# List of recipient emails
-RECIPIENTS = ['mail@bka.bund.de', 'dsa.telegram@edsr.eu']
-
-# Function to send emails
-def send_mass_email(subject: str, body: str) -> None:
+# Create a function to send emails
+def send_email(to_email, subject, body):
     msg = MIMEMultipart()
-    msg['From'] = SMTP_USERNAME
+    msg['From'] = EMAIL_ADDRESS
+    msg['To'] = to_email
     msg['Subject'] = subject
+
     msg.attach(MIMEText(body, 'plain'))
 
     try:
-        with smtplib.SMTP(SMTP_SERVER, SMTP_PORT) as server:
-            server.starttls()  # Secure the connection
-            server.login(SMTP_USERNAME, SMTP_PASSWORD)
-            for recipient in RECIPIENTS:
-                msg['To'] = recipient
-                server.sendmail(SMTP_USERNAME, recipient, msg.as_string())
-        print('Emails sent successfully.')
+        with smtplib.SMTP('smtp.gmail.com', 587) as server:
+            server.starttls()
+            server.login(EMAIL_ADDRESS, EMAIL_PASSWORD)
+            server.send_message(msg)
+        return True
     except Exception as e:
-        print(f'Failed to send emails: {e}')
+        print(f"Failed to send email to {to_email}: {e}")
+        return False
 
-# Telegram command handler
-async def send_email_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-    if len(context.args) < 2:
-        await update.message.reply_text('Usage: /sendemail <subject> <body>')
+# Command handler for /sendmassmail
+def send_mass_mail(update: Update, context: CallbackContext):
+    if len(context.args) < 3:
+        update.message.reply_text("Usage: /sendmassmail <subject> <body> <email1> <email2> ...")
         return
 
     subject = context.args[0]
-    body = ' '.join(context.args[1:])
-    send_mass_email(subject, body)
-    await update.message.reply_text('Emails have been sent.')
+    body = ' '.join(context.args[1:-1])
+    recipients = context.args[-1].split(',')
 
-def main() -> None:
-    # Initialize the Telegram bot
-    application = Application.builder().token('7200863338:AAHB5vASJK7luUk9K2OIa1suB2b-Jf4BsIQ').build()
+    success_count = 0
+    for recipient in recipients:
+        recipient = recipient.strip()
+        if send_email(recipient, subject, body):
+            success_count += 1
 
-    # Register the command handler
-    application.add_handler(CommandHandler('sendemail', send_email_command))
+    update.message.reply_text(f"Sent emails to {success_count}/{len(recipients)} recipients.")
+
+def main():
+    # Replace 'YOUR_TELEGRAM_BOT_TOKEN' with your actual bot token
+    updater = Updater("7200863338:AAHB5vASJK7luUk9K2OIa1suB2b-Jf4BsIQ")
+
+    # Register command handlers
+    updater.dispatcher.add_handler(CommandHandler('sendmassmail', send_mass_mail))
 
     # Start the bot
-    if name == "main":
-    print("Bot is running...")  # This line must be indented
-    main()  # Ensure main() is also indented
+    updater.start_polling()
+    updater.idle()
+
+if __name__ == '__main__':
+    main()
