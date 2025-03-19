@@ -1,5 +1,6 @@
 import smtplib
 import logging
+import asyncio
 from fastapi import FastAPI, BackgroundTasks, Form
 from email.message import EmailMessage
 from telegram import Update
@@ -79,8 +80,11 @@ if __name__ == "__main__":
     from threading import Thread
 
     # Run Telegram bot in a separate thread
-    def run_telegram_bot():
-        telegram_bot.run_polling()
+   async def main():
+    await telegram_bot.start_polling()
+
+if __name__ == "__main__":
+    asyncio.run(main())
 
     telegram_thread = Thread(target=run_telegram_bot)
     telegram_thread.start()
