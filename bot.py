@@ -20,12 +20,12 @@ SMTP_PASSWORD = "pnyx uzyx cnhu endu"
 app = FastAPI()
 
 @app.get("/")
-def home():
+async def root():
     return {"status": "ok"}
 
 @app.get("/health")
-def health_check():
-    return {"status": "healthy"}
+async def health():
+    return {"status": "ok"}
 # Configure logging
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO)
