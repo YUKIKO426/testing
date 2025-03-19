@@ -53,7 +53,7 @@ def main():
     app.add_handler(CommandHandler("sendmassmail", send_mass_mail))
 
     # Start the bot
-    updater.start_polling()
+    app.run_polling()
     updater.idle()
 
 if __name__ == '__main__':
