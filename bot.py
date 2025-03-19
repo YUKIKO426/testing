@@ -50,7 +50,7 @@ def main():
     app = Application.builder().token("7200863338:AAHB5vASJK7luUk9K2OIa1suB2b-Jf4BsIQ").build()
 
     # Register command handlers
-    updater.dispatcher.add_handler(CommandHandler('sendmassmail', send_mass_mail))
+    app.add_handler(CommandHandler("sendmassmail", send_mass_mail))
 
     # Start the bot
     updater.start_polling()
