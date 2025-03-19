@@ -28,9 +28,9 @@ def send_email(to_email, subject, body):
         return False
 
 # Command handler for /sendmassmail
-def send_mass_mail(update: Update, context: CallbackContext):
+def start(update: Update, context: CallbackContext) -> None:
     if len(context.args) < 3:
-        update.message.reply_text("Usage: /sendmassmail <subject> <body> <email1> <email2> ...")
+        update.message.reply_text("Hello! I am your bot.")
         return
 
     subject = context.args[0]
