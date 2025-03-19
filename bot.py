@@ -18,7 +18,7 @@ SMTP_PASSWORD = "pnyx uzyx cnhu endu"
 app = FastAPI()
 
 # Configure logging
-logger = logging.getLogger(name)
+logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO)
 
 logger.info("Logger initialized successfully!")
