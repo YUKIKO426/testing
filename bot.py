@@ -8,7 +8,7 @@ from telegram import Update
 from telegram.ext import Application, CommandHandler, MessageHandler, filters, CallbackContext
 
 # Telegram Bot Token
-TELEGRAM_BOT_TOKEN = "7200863338:AAHB5vASJK7luUk9K2OIa1suB2b-Jf4BsIQ"
+TELEGRAM_BOT_TOKEN = "8002260238:AAEOTgwe1nwudeGHtSzRbLdsBVMLXwIIDOc"
 
 # SMTP Configuration
 SMTP_SERVER = "smtp.gmail.com"  # Change this if using a different provider
