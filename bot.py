@@ -81,8 +81,7 @@ if __name__ == "__main__":
     from threading import Thread
 
     # Run Telegram bot in a separate thread
- def run_telegram_bot():
-    # Function logic here
+def run_telegram_bot():
     print("Running Telegram Bot")
 
     telegram_thread = Thread(target=run_telegram_bot)
