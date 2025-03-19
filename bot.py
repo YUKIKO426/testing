@@ -74,7 +74,7 @@ async def send_email_api(background_tasks: BackgroundTasks, emails: str = Form(.
     
     return {"message": "Emails are being sent in the background"}
 
-if name == "__main__":
+if __name__ == "__main__":
     import uvicorn
     from threading import Thread
 
